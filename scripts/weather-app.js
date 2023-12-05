@@ -1,11 +1,16 @@
+// Selecting form, submit button and error message elements from the DOM
 const form = document.querySelector("form");
 const submitBtn = document.querySelector(".submit-btn");
 const error = document.querySelector(".error-msg");
+
+// Adding event listeners for form submission, button click and window load
 form.addEventListener("submit", handleSubmit);
 submitBtn.addEventListener("click", handleSubmit);
 window.addEventListener("load", handleSubmit);
 
+// Function to handle form submission and window load events
 function handleSubmit(e) {
+	// When the page first loads set the initial location to Melbourne
 	if (e.type == "load") {
 		document.querySelector('input[type="text"]').value = "melbourne";
 	}
@@ -13,11 +18,13 @@ function handleSubmit(e) {
 	e.preventDefault();
 	fetchWeather();
 
+	// When the page first loads clear the input value
 	if (e.type == "load") {
 		document.querySelector('input[type="text"]').value = "";
 	}
 }
 
+// Function to fetch weather data for a given location
 async function getWeatherData(location) {
 	const response = await fetch(
 		`http://api.weatherapi.com/v1/forecast.json?key=1986480656ec490d950204923202611&q=${location}`,
@@ -36,6 +43,7 @@ async function getWeatherData(location) {
 	}
 }
 
+// Function to display an error message
 function throwErrorMsg() {
 	error.style.display = "block";
 	if (error.classList.contains("fade-in")) {
@@ -49,6 +57,7 @@ function throwErrorMsg() {
 	}
 }
 
+// Function to process the fetched weather data
 function processData(weatherData) {
 	const myData = {
 		condition: weatherData.current.condition.text,
@@ -74,6 +83,7 @@ function processData(weatherData) {
 	return myData;
 }
 
+// Function to display the processed weather data on the webpage
 function displayData(newData) {
 	const weatherInfo = document.getElementsByClassName("info");
 	Array.from(weatherInfo).forEach((div) => {
@@ -101,21 +111,25 @@ function displayData(newData) {
 	).textContent = `HUMIDITY: ${newData.humidity}`;
 }
 
+// Function to reset the form
 function reset() {
 	form.reset();
 }
 
+// Function to fetch weather data for the location entered by the user
 function fetchWeather() {
 	const input = document.querySelector('input[type="text"]');
 	const userLocation = input.value;
 	getWeatherData(userLocation);
 }
 
+// Adding an event listener for input changes
 const input = document.querySelector('input[type="text"]');
 input.addEventListener("input", handleInput);
 
 let lastInputValue = input.value;
 
+// Function to handle input changes
 async function handleInput(e) {
 	const userInput = e.target.value;
 	if (userInput.length > 2) {
@@ -130,6 +144,7 @@ async function handleInput(e) {
 
 const apiKey = "prj_live_pk_874cabd607b9483b7bf4b1716c1e301fbd906622";
 
+// Function to fetch location suggestions based on the user's input
 async function fetchLocationSuggestions(query) {
 	// limited to 10 requests per second
 	const response = await fetch(
@@ -144,6 +159,7 @@ async function fetchLocationSuggestions(query) {
 	return data.addresses.map((address) => address.formattedAddress);
 }
 
+// Function to populate the datalist with location suggestions
 function populateDatalist(locations) {
 	const datalist = document.getElementById("locations");
 	datalist.innerHTML = ""; // Clear previous suggestions
