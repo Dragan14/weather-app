@@ -2,7 +2,7 @@
 
 Visit [Weather App](https://weather-app-wxyz.onrender.com) to view the website.
 
-# Product Page
+# Weather App
 
 This is a website showcasing my JavaScript, HTML, and CSS skills. It uses APIs to retrieve location data and weather data.
 
