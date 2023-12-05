@@ -46,7 +46,11 @@ form {
 .submit-btn {
 	height: 100%;
 	width: 5rem;
-	/* width: 100px; */
+	background: url('../images/search-icon.png') no-repeat center center;
+	background-size: contain;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
 }
 
 .input-group {
