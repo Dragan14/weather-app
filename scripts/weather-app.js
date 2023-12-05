@@ -135,7 +135,6 @@ async function handleInput(e) {
 	if (userInput.length > 2) {
 		// Only fetch suggestions if user has typed 3 or more characters
 		const locations = await fetchLocationSuggestions(userInput);
-		console.log(locations);
 		if (userInput != locations[0]) {
 			populateDatalist(locations);
 		}
@@ -156,7 +155,11 @@ async function fetchLocationSuggestions(query) {
 		}
 	);
 	const data = await response.json();
-	return data.addresses.map((address) => address.formattedAddress);
+	const addresses = data.addresses.map(
+		(address) => `${address.city},${address.country}`
+	);
+	const uniqueAddresses = [...new Set(addresses)];
+	return uniqueAddresses;
 }
 
 // Function to populate the datalist with location suggestions
@@ -168,4 +171,5 @@ function populateDatalist(locations) {
 		option.value = location;
 		datalist.appendChild(option);
 	});
+	console.log(document.getElementById("locations"));
 }

@@ -36,11 +36,16 @@ form {
 	height: 100%;
 }
 
+#search-form {
+	display: flex;
+	justify-content: center;
+}
+
 .form-group {
 	float: right;
 	height: 80%;
 	position: relative;
-	margin: 2.5rem 3.5rem 0 0;
+	margin: 2rem 3.5rem 0 0;
 }
 
 .submit-btn {
@@ -105,9 +110,9 @@ input[type="text"]::placeholder {
 
 .main-weather-display {
 	position: absolute;
-	top: 30%;
-	width: 90%;
-	margin-left: 10%;
+	top: 40%;
+	left: 50%;
+	transform: translateX(-50%);
 	color: #f3f3f3;
 }
 
