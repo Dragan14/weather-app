@@ -110,3 +110,46 @@ function fetchWeather() {
 	const userLocation = input.value;
 	getWeatherData(userLocation);
 }
+
+const input = document.querySelector('input[type="text"]');
+input.addEventListener("input", handleInput);
+
+let lastInputValue = input.value;
+
+async function handleInput(e) {
+	const userInput = e.target.value;
+	if (userInput.length > 2) {
+		// Only fetch suggestions if user has typed 3 or more characters
+		const locations = await fetchLocationSuggestions(userInput);
+		console.log(locations);
+		if (userInput != locations[0]) {
+			populateDatalist(locations);
+		}
+	}
+}
+
+const apiKey = "prj_live_pk_874cabd607b9483b7bf4b1716c1e301fbd906622";
+
+async function fetchLocationSuggestions(query) {
+	// limited to 10 requests per second
+	const response = await fetch(
+		`https://api.radar.io/v1/search/autocomplete?query=${query}`,
+		{
+			headers: {
+				Authorization: apiKey,
+			},
+		}
+	);
+	const data = await response.json();
+	return data.addresses.map((address) => address.formattedAddress);
+}
+
+function populateDatalist(locations) {
+	const datalist = document.getElementById("locations");
+	datalist.innerHTML = ""; // Clear previous suggestions
+	locations.forEach((location) => {
+		const option = document.createElement("option");
+		option.value = location;
+		datalist.appendChild(option);
+	});
+}

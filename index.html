@@ -22,13 +22,13 @@
 		<header>
 			<form>
 				<div class="form-group">
-					<button class="submit-btn">
-						<i class="fas fa-search"></i>
-					</button>
-					<input list="locations" type="text" placeholder="Search city" />
-					<datalist id="locations"></datalist>
+					<div class="input-group" style="display: flex;">
+						<input list="locations" type="text" placeholder="Search city" />
+						<button class="submit-btn"></button>
+					</div>
 					<br />
 					<span class="error-msg">No matching location found!</span>
+					<datalist id="locations"></datalist>
 				</div>
 			</form>
 		</header>
