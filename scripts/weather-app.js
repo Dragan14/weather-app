@@ -171,5 +171,4 @@ function populateDatalist(locations) {
 		option.value = location;
 		datalist.appendChild(option);
 	});
-	console.log(document.getElementById("locations"));
 }
