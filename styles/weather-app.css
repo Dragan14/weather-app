@@ -18,6 +18,8 @@ body {
 }
 
 #main-container {
+	display: flex;
+	flex-direction: column;
 	background-image: url("/images/night.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -112,10 +114,14 @@ input[type="text"]::placeholder {
 }
 
 .main-weather-display {
-	position: absolute;
-	top: 40%;
-	left: 48%;
-	transform: translateX(-50%);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 30px;
+	padding-left: 3vw;
+	padding-right: 3vw;
+	margin: auto 0 auto 0;
+	width: 100%;
 	color: #f3f3f3;
 }
 
@@ -126,6 +132,7 @@ input[type="text"]::placeholder {
 }
 
 .location {
+	text-align: center;
 	font-size: 4rem;
 	line-height: 3.5rem;
 	margin-bottom: 1rem;
@@ -141,33 +148,32 @@ input[type="text"]::placeholder {
 }
 
 .degrees::after {
-	content: "\00B0 C";
+	content: "°C";
 	font-size: 3rem;
 	position: absolute;
-	top: 1.8rem;
-	left: 17.3rem;
+	top: 10%;
+	right: -17%;
 }
 
 .weather-details {
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
 	flex-direction: column;
 	font-size: 1.5rem;
 	font-weight: 900;
 	letter-spacing: 0.1rem;
-	position: absolute;
 	border-left: 0.2rem solid rgba(255, 255, 255, 0.5);
-	top: 45%;
+	/* top: 45%;
 	left: 22.5rem;
-	height: 10rem;
+	height: 10rem; */
 	padding-left: 3.5rem;
-	-webkit-box-pack: justify;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
+	justify-content: center;
+}
+
+.general-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .feels-like {
@@ -175,11 +181,9 @@ input[type="text"]::placeholder {
 }
 
 .feels-like::after {
-	content: "\00B0 C";
-	position: absolute;
-	bottom: 1.1rem;
-	left: 11.4rem;
+	content: "°C";
 	font-size: 1rem;
+	vertical-align: super;
 }
 
 .humidity::after {
